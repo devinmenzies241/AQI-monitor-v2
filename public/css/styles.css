@@ -16,22 +16,6 @@ body {
   background-color: rgb(251, 187, 68); 
 }
 
-menu {
-  display: flex;
-  text-align: center;
-  list-style: none;
-  padding: 20px 0;
-  margin: auto;
-  justify-content: center;
-  align-items: center;
-  background-color: #deecef;
-}
-
-/* .nav-item {
-  font-size: 1.25rem;
-  padding: 0 30px;
-} */
-
 .navbar {
   /* background-color: #deecef; */
   background-color: #CADEE2;
