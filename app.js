@@ -6,7 +6,6 @@ const bodyParser = require("body-parser");
 const nodemailer = require("nodemailer");
 const request = require("request");
 
-
 //environment variables linked to dotenv file, used to hide API keys, usernames + passwords
 const iqAirApiKey = process.env.IQ_AIR_API_KEY;
 const user = process.env.USER;
@@ -29,6 +28,17 @@ app.use(bodyParser.urlencoded({
 }));
 
 
+const emailHTML = 
+  '<h1>Hello this is only a test<h1>'
+
+; 
+
+
+
+
+
+
+
 //create transporter via nodemailer for email functionality. This sets up where the email is coming from.
 let transporter = nodemailer.createTransport({
   host: "smtp.office365.com",
@@ -42,6 +52,7 @@ let transporter = nodemailer.createTransport({
 let sendEmails = function() {
   //Create an array for the recipients, currently set to my testing email, will be updated when final email is prepared
   let mailList = [
+    // "governorpolis@state.co.us", 
     "denvairQualityMonitor@proton.me",
   ];
   //Create options to pass into the .sendMail() method, this will specify the email itself. From, to, subject line and the email body.
@@ -50,7 +61,7 @@ let sendEmails = function() {
     to: mailList,
     subject: "Denver Air Quality Has Exceeded 100 AQI",
     //Enter email here, a full HTML file can be written out if necessary for formatting.
-    text: "text body, lorem ipsum etc, etc",
+    html: emailHTML,  
   }
 
 //send email using nodemailer via the specified options and log either and error message or a completed message
@@ -80,10 +91,11 @@ request(options, function(err, response) {
   let weatherData = JSON.parse(jsonData);
   //define variable to hold AQIUS data from json object
   let aqius = weatherData.data.current.pollution.aqius;
+  // let aqius = 100; 
   //log AQIUS
   console.log(aqius);
   //if aqius exceeds threshold, trigger the sendEmails() function, which carries out sending the emails using nodemailer.
-  if (aqius > 100) {
+  if (aqius >= 100) {
     sendEmails();
     console.log(`Emails sent! AQI is above the threshold, currently at ${aqius}`)
   } else {
