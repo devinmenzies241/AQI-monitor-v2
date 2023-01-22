@@ -28,10 +28,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 
-const emailHTML = 
-  '<h1>Hello this is only a test<h1>'
-
-; 
+const emailHTML = '<h1>Hello this is only a test<h1>'; 
 
 
 

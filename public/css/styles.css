@@ -8,6 +8,14 @@ body {
   font-family: 'Montserrat', sans-serif;
 }
 
+::selection {
+  background-color: rgb(251, 187, 68);
+}
+
+::-moz-selection {
+  background-color: rgb(251, 187, 68); 
+}
+
 menu {
   display: flex;
   text-align: center;
@@ -19,9 +27,29 @@ menu {
   background-color: #deecef;
 }
 
-.nav-item {
+/* .nav-item {
   font-size: 1.25rem;
   padding: 0 30px;
+} */
+
+.navbar {
+  background-color: #deecef;
+}
+
+.navbar-brand {
+  color:#5CA1AD;
+}
+
+.navbar-brand:hover {
+  color: #5CA1AD; 
+}
+
+.navbar-toggler {
+  color:#5CA1AD;
+}
+
+.navbar-toggler-icon {
+  color:#5CA1AD;
 }
 
 .nav-link {
@@ -44,11 +72,11 @@ menu {
 h1, h2 {
   text-align: center;
   color: #1B3236;
-  font-weight: 500;
 }
 
 .hero-container {
   display: block;
+  margin-top: 3%; 
   /* background-color: #F1F7F8; */
 }
 
@@ -56,6 +84,11 @@ h1, h2 {
   font-family: 'Raleway', sans-serif;
   font-weight: 100;
   font-size: 4rem;
+}
+
+.main-h2 {
+  font-weight: 400; 
+  font-size: 1.5rem;
 }
 
 .description {
@@ -87,10 +120,15 @@ h1, h2 {
   font-size: 0.8rem;
 }
 
+.pollutant-table caption {
+  text-align: center;
+}
+
 .pollutant-table {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  text-align: center;
   margin-top: 25px;
   border-spacing: 2rem 1rem;
 }
@@ -158,4 +196,27 @@ caption {
   text-align: center;
   color: white;
   background-color: #5CA1AD;
+}
+
+
+/* Media Queries */
+
+@media screen and (max-width: 576px) {
+
+}
+
+@media screen and (max-width: 768px){
+
+}
+
+@media screen and (max-width: 992px) {
+
+}
+
+@media screen and (max-width: 1200px){
+  
+}
+
+@media screen and (max-width: 1400px){
+  
 }
