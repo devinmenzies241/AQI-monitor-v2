@@ -1,0 +1,71 @@
+<%- include("partials/header") -%>
+
+<section class="page-content">
+  <div class="hero-container">
+    <h1 class="main-h1">Denver Air Quality Monitor</h1>
+    <h2 class="main-h2">This site uses data from Open Weather and IQAir to monitor air quality in Denver, Colorado.</h2>
+  </div>
+  <div class="description">
+    <p> When this website is opened it automatically checks the current AQI for Denver, CO.
+      If the AQI exceeds a score of 100, an email is sent to the governor's office.
+      This emails functions as an alert to show that Colorado residents are currently breathing air that is considered harmful to all ages,
+      and provides resources and steps by which elected officials can help.
+      This site will also serve as a hub for resources related to air quality standards within Colorado and the USA.</p>
+  </div>
+  <div class="container iqAir">
+    <h2>Current Conditions</h2>
+    <div class="iqAir-widget" name="airvisual_widget" key="<%= iqAirWidgetKey %>"></div>
+    <script type="text/javascript" src="https://widget.iqair.com/script/widget_v3.0.js"></script>
+    <div class="openWeather">
+      <!-- <h3 class="pollution-h3">Pollution levels: </h3>
+      <p class="concentration-p">Concentration in μg/m<sup>3</sup></p> -->
+      <table class="pollutant-table">
+        <caption>Atmospheric pollution levels (shown in μg/m<sup>3</sup>): </caption>
+        <tbody>
+          <tr>
+            <th>Carbon Monoxide<br>
+              CO
+            </th>
+            <th>Nitrogen Monoxide<br>
+              NO
+            </th>
+            <th>Nitrogen Dioxide<br>
+              NO<sub>2</sub>
+            </th>
+            <th>Ozone<br>
+              O<sub>3</sub>
+            </th>
+            <th>Sulphur Dioxide<br>
+              SO<sub>2</sub>
+            </th>
+            <th>Ammonia<br>
+              NH<sub>3</sub>
+            </th>
+            <th>Particulates<br>
+              PM<sub>2.5</sub>
+            </th>
+            <th>Particulates<br>
+              PM<sub>10</sub>
+            </th>
+          </tr>
+          <tr>
+            <td><%= co %></td>
+            <td><%= no %></td>
+            <td><%= no2 %></td>
+            <td><%= o3 %></td>
+            <td><%= so2 %></td>
+            <td><%= nh3 %></td>
+            <td><%= pm25 %></td>
+            <td><%= pm10 %></td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="open-weather-credit">Levels provided by <a href="https://openweathermap.org/">OpenWeather</a></p>
+    </div>
+  </div>
+</section>
+</body>
+
+</html>
+
+<%- include("partials/footer") -%>

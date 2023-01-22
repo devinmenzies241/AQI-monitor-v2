@@ -1,0 +1,161 @@
+body {
+  /* sets up for the footer to stick to the bottom */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  background-color: #F1F7F8;
+  font-family: 'Montserrat', sans-serif;
+}
+
+menu {
+  display: flex;
+  text-align: center;
+  list-style: none;
+  padding: 20px 0;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+  background-color: #deecef;
+}
+
+.nav-item {
+  font-size: 1.25rem;
+  padding: 0 30px;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #1B3236;
+}
+
+.nav-link:hover {
+  text-decoration: underline;
+  color: #5CA1AD;
+}
+
+.page-content {
+  flex: 1 0 auto;
+  width: 100%;
+  /* background-image: url("../photos/skyPhoto");
+  background-position: top; */
+}
+
+h1, h2 {
+  text-align: center;
+  color: #1B3236;
+  font-weight: 500;
+}
+
+.hero-container {
+  display: block;
+  /* background-color: #F1F7F8; */
+}
+
+.main-h1 {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 100;
+  font-size: 4rem;
+}
+
+.description {
+  font-size: 1rem;
+  margin: auto;
+  width: 75%;
+  background-color: #F1F7F8;
+}
+
+
+.iqAir {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  text-align: center;
+  padding: 25px;
+  background-color: #CADEE2;
+  margin: 0% auto 5%;
+  border-radius: 40px;
+  font-size: 1.25rem;
+}
+
+.pollution-h3 {
+  margin: 2rem 0 0;
+}
+
+.concentration-p {
+  margin: 0 0 10;
+  font-size: 0.8rem;
+}
+
+.pollutant-table {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 25px;
+  border-spacing: 2rem 1rem;
+}
+
+tbody {
+  border: 2px solid;
+  border-color: #4a818a;
+  margin: auto;
+}
+
+caption {
+  font-size: 1.5rem;
+  padding-bottom: 10px;
+}
+
+.pollutant-table th {
+  font-size: 1rem;
+  font-weight: normal;
+}
+
+.pollutant-table td {
+  background-color: #deecef;
+  border-radius: 40px;
+}
+
+.open-weather-credit{
+  font-size: 0.75rem;
+}
+
+/* Contact Page */
+
+.contact-email {
+  text-decoration: none;
+  color: inherit;
+}
+
+
+.contact-div {
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+.contact-text {
+    color: #5CA1AD;
+}
+.contact-h1{
+    font-size: 3rem;
+}
+
+.contact-email {
+  text-decoration: underline;
+   color: #4a818a;
+}
+
+
+
+.footer {
+  /* margin-top: auto here is the key to getting the footer to stick to the bottom */
+  margin-top: auto;
+  padding: 20px;
+  flex-shrink: 0;
+  text-align: center;
+  color: white;
+  background-color: #5CA1AD;
+}
