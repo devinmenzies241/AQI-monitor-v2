@@ -16,8 +16,8 @@ body {
   background-color: rgb(251, 187, 68); 
 }
 
+/* Navigation //////////////////////////////////////////////////////////////////////////////////////////*/
 .navbar {
-  /* background-color: #deecef; */
   background-color: #CADEE2;
 }
 
@@ -73,12 +73,10 @@ body {
   color:#1B3236; 
 }
 
-
+/* Main page /////////////////////////////////////////////////////////////////////////////////////////*/
 .page-content {
   flex: 1 0 auto;
   width: 100%;
-  /* background-image: url("../photos/skyPhoto");
-  background-position: top; */
 }
 
 h1, h2 {
@@ -89,7 +87,6 @@ h1, h2 {
 .hero-container {
   display: block;
   margin-top: 3%; 
-  /* background-color: #F1F7F8; */
 }
 
 .main-h1 {
@@ -110,7 +107,7 @@ h1, h2 {
   background-color: #F1F7F8;
 }
 
-
+/* API SECTION  //////////////////////////////////////////////////////////////////////////////////////*/
 .iqAir {
   display: flex;
   flex-direction: column;
@@ -159,11 +156,12 @@ caption {
 .pollutant-table th {
   font-size: 1rem;
   font-weight: normal;
+  padding: 5px 30px; 
 }
 
 .pollutant-table td {
   background-color: #deecef;
-  border-radius: 40px;
+  border-radius: 40px; 
 }
 
 
