@@ -32,10 +32,6 @@ const emailHTML = '<h1>Hello this is only a test<h1>';
 
 
 
-
-
-
-
 //create transporter via nodemailer for email functionality. This sets up where the email is coming from.
 let transporter = nodemailer.createTransport({
   host: "smtp.office365.com",
@@ -106,6 +102,17 @@ let openWeatherOptions = {
   url: `http://api.openweathermap.org/data/2.5/air_pollution?lat=39.742043&lon=-104.991531&appid=${openWeatherAPI}`
 }
 
+//follow same steps as we did using the IQAir api but instead using the OpenWeather API to get air pollution data
+request(openWeatherOptions, function(err, response) {
+  if (err) throw new Error(err);
+  let openWeatherData = JSON.parse(response.body);
+  let pollutants = openWeatherData.list[0].components;
+  //Use Object.values to further hone in on the correct data
+  pollutantData = Object.values(pollutants);
+  //run getPollutantData function passing the pollutantData as a parameter
+  getPollutantData(pollutantData);
+});
+
 //create variable for our Open weather pollutantData to be stored in
 let pollutantData;
 //create function to call once we have the open weather data that will render the data on screen using Express "GET" route
@@ -125,16 +132,6 @@ let getPollutantData = function(pollutantData) {
     });
   });
 }
-//follow same steps as we did using the IQAir api but instead using the OpenWeather API to get air pollution data
-request(openWeatherOptions, function(err, response) {
-  if (err) throw new Error(err);
-  let openWeatherData = JSON.parse(response.body);
-  let pollutants = openWeatherData.list[0].components;
-  //Use Object.values to further hone in on the correct data
-  pollutantData = Object.values(pollutants);
-  //run getPollutantData function passing the pollutantData as a parameter
-  getPollutantData(pollutantData);
-});
 
 //Express GET route for the contact page
 app.get("/contact", function(req, res) {
