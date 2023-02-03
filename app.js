@@ -117,9 +117,9 @@ request(openWeatherOptions, function(err, response) {
 let pollutantData;
 //create function to call once we have the open weather data that will render the data on screen using Express "GET" route
 let getPollutantData = function(pollutantData) {
-  app.get("/", function(req, res) {
+  app.get("/home", function(req, res) {
+    // render our homepage html passing the below variables to the view. 
     res.render("index", {
-      //pass these variables into index.ejs using view template. They are listed as the second argument in this res.render() method, the first arg. index is the file to render to.
       iqAirWidgetKey: iqAirWidget,
       co: pollutantData[0],
       no: pollutantData[1],
@@ -133,6 +133,12 @@ let getPollutantData = function(pollutantData) {
   });
 }
 
+// Root route setup, in order to access and display the Open Weather JSON on index.html I set up a re-route
+// where once the page loads, and has access to the JSON data our main index.html view is displayed. 
+// This was to avoid getting the 'cannot get /' error that was occuring on starting the app after deployment.
+app.get('/', (req, res) => {
+  res.redirect('/home'); 
+});
 //Express GET route for the contact page
 app.get("/contact", function(req, res) {
   res.render("contact")
