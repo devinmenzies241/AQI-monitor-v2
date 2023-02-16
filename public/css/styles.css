@@ -60,8 +60,12 @@ body {
 
 .nav-link-offCanvas {
   text-decoration: none;
-  font-size: 1.25rem;
+  font-size: 2.25rem;
   color: #1B3236;
+}
+
+.nav-item-offCanvas {
+  padding: 10%; 
 }
 
 .nav-link-offCanvas:hover {
@@ -98,6 +102,7 @@ h1, h2 {
 .main-h2 {
   font-weight: 400; 
   font-size: 1.5rem;
+  padding: 1% 4%; 
 }
 
 .description {
@@ -118,6 +123,7 @@ h1, h2 {
   margin: 0% auto 5%;
   border-radius: 40px;
   font-size: 1.25rem;
+  width: 75%; 
 }
 
 .pollution-h3 {
@@ -140,6 +146,7 @@ h1, h2 {
   text-align: center;
   margin-top: 25px;
   border-spacing: 2rem 1rem;
+  overflow: scroll;
 }
 
 tbody {
@@ -212,22 +219,48 @@ caption {
 
 /* Media Queries */
 
-@media screen and (max-width: 576px) {
+@media all and (min-width: 576px) and (max-width: 992px) {
+  .main-h1 {
+    padding-top: 5%; 
+    font-size: 6.5rem;
+  }
+  
+  .main-h2 {
+    font-size: 2.5rem;
+    margin: 3% 3%; 
+  }
+  
+  .description {
+    font-size: 2rem;
+    padding: 4% 0%; 
+  }
+  .iqAir {
+    scale: 110%; 
+  }
+  .fa-bars {
+    font-size: 3rem;
+  }
+  .nav-link-offCanvas {
+    font-size: 2.5rem;
+  }
+  
+  .nav-item-offCanvas {
+    padding: 10%; 
+  }
+}
+
+@media screen and (min-width: 768px){
 
 }
 
-@media screen and (max-width: 768px){
+@media screen and (min-width: 992px) {
 
 }
 
-@media screen and (max-width: 992px) {
-
-}
-
-@media screen and (max-width: 1200px){
+@media screen and (min-width: 1200px){
   
 }
 
-@media screen and (max-width: 1400px){
+@media screen and (min-width: 1400px){
   
 }
