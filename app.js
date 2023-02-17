@@ -96,26 +96,27 @@ request(options, function(err, response) {
   }
 });
 
-//Create options for OpenWeather request
-// let openWeatherOptions = {
-//   method: "GET",
-//   url: `http://api.openweathermap.org/data/2.5/air_pollution?lat=39.742043&lon=-104.991531&appid=${openWeatherAPI}`
-// }
+// Create options for OpenWeather request
+let openWeatherOptions = {
+  method: "GET",
+  url: `http://api.openweathermap.org/data/2.5/air_pollution?lat=39.742043&lon=-104.991531&appid=${openWeatherAPI}`
+}
 
 // //create variable for our Open weather pollutantData to be stored in
-// let pollutantData;
+let pollutantData;
 
-// //follow same steps as we did using the IQAir api but instead using the OpenWeather API to get air pollution data
-// request(openWeatherOptions, function(err, response) {
-//   if (err) throw new Error(err);
-//   let openWeatherData = JSON.parse(response.body);
-//   let pollutants = openWeatherData.list[0].components;
-//   //Use Object.values to further hone in on the correct data
-//   pollutantData = Object.values(pollutants);
-//   //run getPollutantData function passing the pollutantData as a parameter
-//   // getPollutantData(pollutantData);
-//   return pollutantData; 
-// });
+//follow same steps as we did using the IQAir api but instead using the OpenWeather API to get air pollution data
+request(openWeatherOptions, function(err, response) {
+  if (err) throw new Error(err);
+  let openWeatherData = JSON.parse(response.body);
+  let pollutants = openWeatherData.list[0].components;
+  //Use Object.values to further hone in on the correct data
+  pollutantData = Object.values(pollutants);
+  //run getPollutantData function passing the pollutantData as a parameter
+  // getPollutantData(pollutantData);
+  return pollutantData; 
+});
+
 
 // fetch(`http://api.openweathermap.org/data/2.5/air_pollution?lat=39.742043&lon=-104.991531&appid=${openWeatherAPI}`)
 //   .then(response => response.json())
@@ -128,35 +129,56 @@ request(options, function(err, response) {
 
 //create function to call once we have the open weather data that will render the data on screen using Express "GET" route
 // let getPollutantData = function(pollutantData) {
-app.get("/", function(req, res) {
-  fetch(`http://api.openweathermap.org/data/2.5/air_pollution?lat=39.742043&lon=-104.991531&appid=${openWeatherAPI}`)
-    .then(response => response.json())
-    .then(data => { 
-      let pollutants = data.list[0].components; 
-      let pollutantData = Object.values(pollutants); 
-      // render our homepage html passing the below variables to the view. 
-      res.render("home", {
-        iqAirWidgetKey: iqAirWidget,
-        co: pollutantData[0],
-        no: pollutantData[1],
-        no2: pollutantData[2],
-        o3: pollutantData[3],
-        so2: pollutantData[4],
-        nh3: pollutantData[5],
-        pm25: pollutantData[6],
-        pm10: pollutantData[7],
-      },);
-    });
-});
+// app.get("/", function(req, res) {
+//   fetch(`http://api.openweathermap.org/data/2.5/air_pollution?lat=39.742043&lon=-104.991531&appid=${openWeatherAPI}`)
+//     .then(response => response.json())
+//     .then(data => { 
+//       let pollutants = data.list[0].components; 
+//       let pollutantData = Object.values(pollutants); 
+//       // render our homepage html passing the below variables to the view. 
+//       res.render("home", {
+//         iqAirWidgetKey: iqAirWidget,
+//         co: pollutantData[0],
+//         no: pollutantData[1],
+//         no2: pollutantData[2],
+//         o3: pollutantData[3],
+//         so2: pollutantData[4],
+//         nh3: pollutantData[5],
+//         pm25: pollutantData[6],
+//         pm10: pollutantData[7],
+//       },);
+//     })
+//     .catch(error => {
+//       console.log(error) 
+//       res.status(500).send({
+//         message: e.message || 'Internal Server Error'
+//       });
+//     });
+// });
 // }
+
+app.get("/home", function(req, res) {
+  // render our homepage html passing the below variables to the view. 
+  res.render("home", {
+    iqAirWidgetKey: iqAirWidget,
+    co: pollutantData[0],
+    no: pollutantData[1],
+    no2: pollutantData[2],
+    o3: pollutantData[3],
+    so2: pollutantData[4],
+    nh3: pollutantData[5],
+    pm25: pollutantData[6],
+    pm10: pollutantData[7],
+  },);
+});
 
 // Root route setup, in order to access and display the Open Weather JSON on index.html I set up a re-route
 // where once the page loads, and has access to the JSON data our main index.html view is displayed. 
 // This was to avoid getting the 'cannot get /' error that was occuring on starting the app after deployment.
 
-// app.get('/', (req, res) => {
-//   res.render('root'); 
-// });
+app.get('/', (req, res) => {
+  res.render('root'); 
+});
 
 //Express GET route for the contact page
 app.get("/contact", function(req, res) {
