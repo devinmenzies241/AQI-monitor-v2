@@ -116,7 +116,45 @@ request(openWeatherOptions, function(err, response) {
   getPollutantData(pollutantData);
 });
 
+
+// fetch(`http://api.openweathermap.org/data/2.5/air_pollution?lat=39.742043&lon=-104.991531&appid=${openWeatherAPI}`)
+//   .then(response => response.json())
+//   .then(data => { 
+//     let pollutants = data.list[0].components; 
+//     let pollutantData = Object.values(pollutants); 
+//   });
+  
+
+
 //create function to call once we have the open weather data that will render the data on screen using Express "GET" route
+// let getPollutantData = function(pollutantData) {
+// app.get("/", function(req, res) {
+//   fetch(`http://api.openweathermap.org/data/2.5/air_pollution?lat=39.742043&lon=-104.991531&appid=${openWeatherAPI}`)
+//     .then(response => response.json())
+//     .then(data => { 
+//       let pollutants = data.list[0].components; 
+//       let pollutantData = Object.values(pollutants); 
+//       // render our homepage html passing the below variables to the view. 
+//       res.render("home", {
+//         iqAirWidgetKey: iqAirWidget,
+//         co: pollutantData[0],
+//         no: pollutantData[1],
+//         no2: pollutantData[2],
+//         o3: pollutantData[3],
+//         so2: pollutantData[4],
+//         nh3: pollutantData[5],
+//         pm25: pollutantData[6],
+//         pm10: pollutantData[7],
+//       },);
+//     })
+//     .catch(error => {
+//       console.log(error) 
+//       res.status(500).send({
+//         message: e.message || 'Internal Server Error'
+//       });
+//     });
+// });
+// }
 let getPollutantData = () => {
   app.get("/home", function(req, res) {
     // render our homepage html passing the below variables to the view. 
