@@ -1,0 +1,29 @@
+<%- include("partials/header") -%>
+
+<section class="page-content">
+  <div class="hero-container">
+    <h1 class="main-h1">Denver Air Quality Monitor</h1>
+    <h2 class="main-h2">This site uses data from Open Weather and IQAir to monitor air quality in Denver, Colorado.</h2>
+  </div>
+  <div class="description">
+    <p> When this website is opened it automatically checks the current AQI for Denver, CO.
+      If the AQI exceeds a score of 100, an email is sent to the governor's office.
+      This emails functions as an alert to show that Colorado residents are currently breathing air that is considered harmful to all ages,
+      and provides resources and steps by which elected officials can help.
+      This site will also serve as a hub for resources related to air quality standards within Colorado and the USA.</p>
+  </div>
+  <div class="container iqAir-root">
+    <div class="openWeather">
+      <form action="/home" method="GET">
+        <button class="show-conditions-btn">
+          <h2>Show Current Conditions</h2>
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+</body>
+
+</html>
+
+<%- include("partials/footer") -%>

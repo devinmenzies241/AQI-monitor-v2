@@ -113,6 +113,24 @@ h1, h2 {
 }
 
 /* API SECTION  //////////////////////////////////////////////////////////////////////////////////////*/
+.show-conditions-btn {
+  border-style: none;
+  border-radius: 20px;
+  background-color:#5CA1AD;
+  color:white; 
+}
+
+.show-conditions-btn:hover {
+  background-color:#CADEE2;
+}
+
+.iqAir-root {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  text-align: center;
+}
+
 .iqAir {
   display: flex;
   flex-direction: column;
@@ -140,13 +158,12 @@ h1, h2 {
 }
 
 .pollutant-table {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  flex-direction: row;
   justify-content: center;
   text-align: center;
   margin-top: 25px;
   border-spacing: 2rem 1rem;
-  overflow: scroll;
 }
 
 tbody {
@@ -176,7 +193,7 @@ caption {
   font-size: 0.75rem;
 }
 
-/* Contact Page */
+/* Contact Page ////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 .contact-email {
   text-decoration: none;
