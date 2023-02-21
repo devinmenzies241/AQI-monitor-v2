@@ -27,12 +27,10 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-
+//Create the email that will be sent once the AQI threshold is exceeded
 const emailHTML = '<h1>Hello this is only a test<h1>'; 
 
-
-
-//create transporter via nodemailer for email functionality. This sets up where the email is coming from.
+//Create transporter via nodemailer for email functionality. This sets up where the email is coming from.
 let transporter = nodemailer.createTransport({
   host: "smtp.office365.com",
   auth: {
@@ -41,12 +39,12 @@ let transporter = nodemailer.createTransport({
   }
 });
 
-//configure nodemailer email,
+//Configure nodemailer email,
 let sendEmails = function() {
   //Create an array for the recipients, currently set to my testing email, will be updated when final email is prepared
   let mailList = [
-    // "governorpolis@state.co.us", 
-    "denvairQualityMonitor@proton.me",
+    // "governorpolis@state.co.us", // Main recipient, the governor's office email 
+    "denvairQualityMonitor@proton.me", // my testing email, I also want to be alerted when the emails are sent
   ];
   //Create options to pass into the .sendMail() method, this will specify the email itself. From, to, subject line and the email body.
   let options = {
@@ -68,7 +66,7 @@ let sendEmails = function() {
   });
 };
 
-//Create options request will use to acquire IQAir api JSON
+//Create options the Request module will use to acquire IQAir api JSON
 let options = {
   method: "GET",
   url: `http://api.airvisual.com/v2/city?city=Denver&state=Colorado&country=USA&key=${iqAirApiKey}`,
@@ -96,24 +94,22 @@ request(options, function(err, response) {
   }
 });
 
-// Create options for OpenWeather request
+// Create options for OpenWeather API request
 let openWeatherOptions = {
   method: "GET",
   url: `http://api.openweathermap.org/data/2.5/air_pollution?lat=39.742043&lon=-104.991531&appid=${openWeatherAPI}`
 }
 
-// //create variable for our Open weather pollutantData to be stored in
-let pollutantData;
+// //create variable for our Open weather pollutantData to be stored in, this prevents scoping error
+let pollutantValues;
 
 //follow same steps as we did using the IQAir api but instead using the OpenWeather API to get air pollution data
 request(openWeatherOptions, function(err, response) {
   if (err) throw new Error(err);
   let openWeatherData = JSON.parse(response.body);
   let pollutants = openWeatherData.list[0].components;
-  //Use Object.values to further hone in on the correct data
-  pollutantData = Object.values(pollutants);
-  //run getPollutantData function passing the pollutantData as a parameter
-  getPollutantData(pollutantData);
+  pollutantValues = Object.values(pollutants);  //Use Object.values to get an array of values, rather than the object with key: value pairs
+  getPollutantData(pollutantValues); //run getPollutantData function passing the pollutantData as a parameter
 });
 
 //create function to call once we have the open weather data that will render the data on screen using Express "GET" route
@@ -122,21 +118,26 @@ let getPollutantData = () => {
     // render our homepage html passing the below variables to the view. 
     res.render("home", {
       iqAirWidgetKey: iqAirWidget,
-      co: pollutantData[0],
-      no: pollutantData[1],
-      no2: pollutantData[2],
-      o3: pollutantData[3],
-      so2: pollutantData[4],
-      nh3: pollutantData[5],
-      pm25: pollutantData[6],
-      pm10: pollutantData[7],
+      co: pollutantValues[0],
+      no: pollutantValues[1],
+      no2: pollutantValues[2],
+      o3: pollutantValues[3],
+      so2: pollutantValues[4],
+      nh3: pollutantValues[5],
+      pm25: pollutantValues[6],
+      pm10: pollutantValues[7],
     },);
   });
 }
-// Root route setup, in order to access and display the Open Weather JSON on index.html I set up a re-route
-// where once the page loads, and has access to the JSON data our main index.html view is displayed. 
-// This was to avoid getting the 'cannot get /' error that was occuring on starting the app after deployment.
-
+// Because of how Request, Express and EJS templates work I could not render the API data to the root route on page load
+// without encountering a 'cannot get / ' or 'Internal Server Error'. This was because the HTML was trying to render the 
+// injected EJS values into the document before they were retreived from the API response. I tried to wrap the root route
+// in a function that processed the request first, then passed the data into the HTML using res.render(), however
+// this caused an error upon loading the page. Once the browser was refreshed the API data would have arrived and the 
+// browser could render the EJS values, but that was not an acceptable bug. I have now created a new route to a copy of 
+// the homepage but one that will load and render the api data via EJS once a button is pressed. So the root route will 
+// display a button to get the data, and once that is clicked it will follow the secondary /home route to render the data
+// without error. In the future this sort of thing would be much better completed using React or some front-end framework
 app.get('/', (req, res) => {
   res.render('root'); 
 });
@@ -145,7 +146,8 @@ app.get('/', (req, res) => {
 app.get("/contact", function(req, res) {
   res.render("contact")
 });
-//Express server listen method for our port (declared at beginning of the file)
+
+//Tell express to start the server on the aformentioned port 
 app.listen(port, () => {
   console.log(`Server started on port ${port}`);
 });

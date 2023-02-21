@@ -96,7 +96,7 @@ h1, h2 {
 .main-h1 {
   font-family: 'Raleway', sans-serif;
   font-weight: 100;
-  font-size: 4rem;
+  font-size: 5rem;
 }
 
 .main-h2 {
@@ -106,7 +106,7 @@ h1, h2 {
 }
 
 .description {
-  font-size: 1rem;
+  font-size: 1.25rem;
   margin: auto;
   width: 75%;
   background-color: #F1F7F8;
@@ -155,6 +155,20 @@ h1, h2 {
   width: 75%; 
 }
 
+.iqAir-widget {
+  margin-top: 1%;
+}
+
+.pollutant-table{
+  margin-top: 2%; 
+  border-color: #5d7d83; 
+  border-radius: 5px;
+}
+
+.pollutant-table th {
+  font-size: 1rem;
+}
+
 .pollution-h3 {
   margin: 2rem 0 0;
 }
@@ -164,41 +178,10 @@ h1, h2 {
   font-size: 0.8rem;
 }
 
-.pollutant-table caption {
-  text-align: center;
-}
-
-.pollutant-table {
-  display: grid;
-  flex-direction: row;
-  justify-content: center;
-  text-align: center;
-  margin-top: 25px;
-  border-spacing: 2rem 1rem;
-}
-
-tbody {
-  border: 2px solid;
-  border-color: #4a818a;
-  margin: auto;
-}
-
 caption {
-  font-size: 1.5rem;
-  padding-bottom: 10px;
-}
-
-.pollutant-table th {
   font-size: 1rem;
-  font-weight: normal;
-  padding: 5px 30px; 
+  padding-bottom: 0; 
 }
-
-.pollutant-table td {
-  background-color: #deecef;
-  border-radius: 40px; 
-}
-
 
 .open-weather-credit{
   font-size: 0.75rem;
@@ -246,20 +229,36 @@ caption {
 
 
 /* Media Queries */
+/* 
+@media all and (max-width: 500px) {
+  .iqAir {
+    overflow: hidden;
+  }
+  .pollutant-table {
+    color: red; 
+    margin-top: 25px;
+    border-spacing: 2rem 1rem;
+  }
+  .pollutant-table th {
+    font-size: 1rem;
+    font-weight: normal;
+    padding: 5px 30px; 
+  }
+}
 
 @media all and (min-width: 576px) and (max-width: 992px) {
   .main-h1 {
     padding-top: 5%; 
-    font-size: 6.5rem;
+    font-size: 5.75rem;
   }
   
   .main-h2 {
-    font-size: 2.5rem;
+    font-size: 2rem;
     margin: 3% 3%; 
   }
   
   .description {
-    font-size: 2rem;
+    font-size: 1.75rem;
     padding: 4% 0%; 
   }
   .iqAir {
@@ -291,4 +290,4 @@ caption {
 
 @media screen and (min-width: 1400px){
   
-}
+} */
